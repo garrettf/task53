@@ -4,6 +4,8 @@ board for tracking work in a progress. Each row on the board corresponds to
 a deliverable and its corresponding tasks. Like [Trello](https://trello.com/), 
 but each card has its own sub-tasks.
 
+![screen shot 2014-11-12 at 5 32 57 am](https://cloud.githubusercontent.com/assets/480618/5010948/604f280a-6a2d-11e4-8b60-a91feb95eba0.png)
+
 ## TODO
  * Switch to default inactive + active class
  * Unique task colors per user
