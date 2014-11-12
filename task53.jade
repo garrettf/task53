@@ -1,0 +1,97 @@
+head
+  title task53
+  link(href='http://fonts.googleapis.com/css?family=Lato:400,700,300italic,400italic,700italic', rel='stylesheet', type='text/css')
+  
+body
+  .drawer
+    p hello
+  .wrapper
+    .board
+      .people
+        +people
+      button.open-nav OPEN
+      +cardsIndex
+      .row
+        .card-column
+          +cardCreate
+        .note-column
+        .note-column
+        .note-column
+        .card-column
+    .login
+      +colorPicker
+      +loginButtons align="right"
+      +trash
+
+template( name = 'cardsIndex' )
+  .row--head
+    .card-column
+      h2 Result
+    .note-column
+      h2 Not Started
+    .note-column
+      h2 In Progress
+    .note-column
+      h2 Finished
+    .card-column
+      h2 Deployed
+  each activeCards
+    .row
+      +cardColumn column=0 card=this
+      +noteColumn column=0 card_id=_id
+      +noteColumn column=1 card_id=_id
+      +noteColumn column=2 card_id=_id
+      +cardColumn column=1 card=this
+
+template( name = 'cardColumn' )
+  if correctColumn
+    with card
+      .card-column
+        +card
+  else
+    .card-column
+
+template( name = 'card' )
+  .card( draggable = 'true' )
+    +markdown
+      =content
+    button.card__remove &times;
+    small created by #{ displayName }
+
+template( name = 'noteColumn')
+  .note-column
+    each notes
+      +note
+    +noteCreate
+
+template( name = 'note')
+  .note( draggable = 'true', style = "background-color: #{color}" )
+    +markdown
+      =content
+
+template( name = 'noteCreate' )
+  .note.create.inactive
+    button.note-create__activate +
+    textarea.note-create__content
+    button.note-create__button +
+
+template( name = 'cardCreate' )
+  label Content
+  textarea.card-create__content
+  button.card-create__button Create Card
+
+template( name = 'people' )
+  each people
+    +person
+
+template( name = 'person' )
+  .person( style = "background-color: #{color}" )
+    img( src = avatarURL, width='48', height='48' )
+
+template( name = 'colorPicker' )
+  .color-picker
+    textarea
+    button set
+
+template( name = 'trash' )
+  button TRASH

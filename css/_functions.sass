@@ -1,0 +1,28 @@
+@function em($px, $base: $base-font-size)
+    @return ($px / $base) * 1em
+
+@mixin keyframes($animation-name)
+  @-webkit-keyframes $animation-name 
+    @content
+  
+  @-moz-keyframes $animation-name
+    @content
+  
+  @keyframes $animation-name
+    @content
+@mixin animation($animation...)
+  -o-animation: $animation
+  -moz-animation: $animation
+  -webkit-animation: $animation
+  animation: $animation
+
+@mixin box-shadow($top, $left, $blur, $color, $inset: false)
+  @if $inset
+    -webkit-box-shadow:inset $top $left $blur $color
+    -moz-box-shadow:inset $top $left $blur $color
+    box-shadow:inset $top $left $blur $color
+  @else
+    -webkit-box-shadow: $top $left $blur $color
+    -moz-box-shadow: $top $left $blur $color
+    box-shadow: $top $left $blur $color
+

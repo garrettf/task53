@@ -1,0 +1,178 @@
+@import 'functions'
+@import 'variables'
+@import 'utilities'
+@import 'base'
+
+.row
+  display: flex
+  min-height: $row-height
+  border-bottom: $border
+  color: black
+
+.card-column
+  float: left
+  width: $card-width
+  height: inherit
+  padding: 0 em(10px)
+  border-right: $border
+  &:last-child
+    border-right: none
+
+
+.note-column
+  float: left
+  width: 2 * $note-width + em(20px)
+  height: inherit
+  padding: em(5px)
+  border-right: $border
+  &:hover .note.create.inactive
+    height: $note-height - 2 * em(5px)
+    visibility: visible
+
+.row--head
+  display: flex
+  height: em(50px)
+  border-bottom: $border
+  color: black
+  text-align: center
+  h2
+    font-style: italic
+    color: lighten($bg, 80)
+    opacity: 0.9
+  div
+    padding-top: 0
+
+.card
+  $padding-h: em(10px)
+  $padding-v: em(1px)
+  position: relative
+  width: $card-width - 2 * $padding-h
+  height: $card-height - 2 * $padding-v
+  margin: em(10px) 0
+  padding: $padding-v $padding-h
+  background-color: white
+  box-shadow: em(2px) em(2px) em(2px) em(2px) rgba(0, 0, 0, 0.1)
+  @include animation(fadein 0.3s)
+  small
+    position: absolute
+    bottom: 0
+    right: 0
+    margin-bottom: em(6px)
+    margin-right: em(6px)
+    color: #bbb
+  button.card__remove
+    position: absolute
+    bottom: 0
+    left: 0
+    margin-bottom: em(6px)
+    margin-left: em(6px)
+  
+    
+.note
+  $color: #ff3352
+  $padding-h: em(5px)
+  $padding-v: em(5px)
+  float: left
+  width: $note-width - 2 * $padding-h
+  height: $note-height - 2 * $padding-v
+  padding: $padding-v $padding-h
+  margin: em(5px)
+  background-color: $color
+  position: relative
+  transition: background-color 0.3s
+  @include animation(fadein 0.3s)
+  p
+    margin-top: 0
+
+@include keyframes(pluslighter)
+  from
+    color: lighten($bg, 30)
+  to
+    color: lighten($bg, 80)
+
+@include keyframes(plusdarker)
+  from
+    color: lighten($bg, 80)
+  to
+    color: lighten($bg, 30)
+
+@include keyframes(showNewNote)
+  from
+    visibility: hidden
+    height: 0
+  to
+    visibility: visible
+    height: $note-height - 2 * em(5px)
+
+.note.create
+  background-color: lighten($bg, 20)
+  textarea
+    height: em(50px)
+    width: $note-width - em(10px)
+    background-color: lighten($bg, 20)
+    border: none
+    color: white
+    resize: none
+    &:focus
+      outline-style: none
+      outline-color: lighten($bg, 40)
+  button.note-create__activate
+    display: none
+  button.note-create__button
+    position: absolute
+    bottom: 0
+    right: 0
+    font-family: Arial
+    font-size: em(18px)
+    line-height: 1
+    background: none
+    border: none
+    font-weight: bold
+    color: lighten($bg, 80)
+
+.note.create.active
+  @include box-shadow(0, 0, em(8px), lighten($bg, 70))
+
+.note.create.inactive
+  background: none
+  height: 0
+  visibility: hidden
+  //@include animation(showNewNote 0.5s)
+  transition: height 0.5s
+  textarea
+    display: none
+  button.note-create__button
+    display: none
+  button.note-create__activate
+    display: block
+    background: none
+    font-family: Arial
+    font-size: em(28px)
+    margin-left: auto
+    margin-right: auto
+    margin-top: em(7px)
+    border: none
+    color: lighten($bg, 30)
+    outline-style: none
+    @include animation(plusdarker 0.3s)
+    &:hover
+      @include animation(pluslighter 0.3s)
+      color: lighten($bg, 80)
+      
+.card-wrapper
+  position: relative
+
+.people
+  width: 100%
+  height: em(60px)
+
+.person
+  float: left
+  position: relative
+  background-color: #ff3352
+  width: em(60px)
+  height: em(60px)
+  img
+    position: absolute
+    top: em(6px)
+    left: em(6px)

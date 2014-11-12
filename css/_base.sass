@@ -1,0 +1,37 @@
+@import 'functions'
+@import 'variables'
+
+$backlog-width: 400px
+
+html
+  font-size: $base-font-size
+
+body
+  background-color: $bg
+  font-family: 'Lato', 'Helvetica Neue'
+  color: white
+
+.board
+  width: em(1084px)
+  margin: auto
+
+.wrapper
+  position: relative
+  top: 0
+  left: 0
+  transition: left 0.3s
+
+.wrapper--nav-open
+  left: em($backlog-width)
+
+.drawer
+  left: -1 * em($backlog-width)
+  position: fixed
+  z-index: 20
+  overflow: hidden
+  height: 100%
+  width: em($backlog-width)
+  transition: left 0.3s
+
+.drawer--open
+  left: 0
