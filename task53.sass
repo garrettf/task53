@@ -1,3 +1,4 @@
+@import 'meyer-reset'
 @import 'functions'
 @import 'variables'
 @import 'utilities'
@@ -18,7 +19,6 @@
   &:last-child
     border-right: none
 
-
 .note-column
   float: left
   width: 2 * $note-width + em(20px)
@@ -31,7 +31,6 @@
 
 .row--head
   display: flex
-  height: em(50px)
   border-bottom: $border
   color: black
   text-align: center
@@ -39,6 +38,7 @@
     font-style: italic
     color: lighten($bg, 80)
     opacity: 0.9
+    font-size: 160%
   div
     padding-top: 0
 
@@ -83,6 +83,60 @@
   @include animation(fadein 0.3s)
   p
     margin-top: 0
+  &.create
+    background: none
+    height: 0
+    visibility: hidden
+    transition: height 0.5s
+    textarea
+      display: none
+    button.note-create__button
+      display: none
+    button.note-create__activate
+      display: block
+      background: none
+      font-family: Arial
+      font-size: em(28px)
+      margin-left: auto
+      margin-right: auto
+      margin-top: em(7px)
+      border: none
+      color: lighten($bg, 30)
+      outline-style: none
+      @include animation(plusdarker 0.3s)
+      &:hover
+        @include animation(pluslighter 0.3s)
+        color: lighten($bg, 80)
+    &.active
+      height: $note-height - 2 * $padding-v
+      visibility: visible
+      background-color: lighten($bg, 20)
+      @include box-shadow(0, 0, em(8px), lighten($bg, 70))
+      textarea
+        display: block
+        height: em(50px)
+        width: $note-width - em(10px)
+        background-color: lighten($bg, 20)
+        border: none
+        color: white
+        resize: none
+        &:focus
+          outline-style: none
+          outline-color: lighten($bg, 40)
+      button.note-create__activate
+        display: none
+      button.note-create__button
+        display: block
+        position: absolute
+        bottom: 0
+        right: 0
+        font-family: Arial
+        font-size: em(18px)
+        line-height: 1
+        background: none
+        border: none
+        font-weight: bold
+        color: lighten($bg, 80)
 
 @include keyframes(pluslighter)
   from
@@ -104,61 +158,7 @@
     visibility: visible
     height: $note-height - 2 * em(5px)
 
-.note.create
-  background-color: lighten($bg, 20)
-  textarea
-    height: em(50px)
-    width: $note-width - em(10px)
-    background-color: lighten($bg, 20)
-    border: none
-    color: white
-    resize: none
-    &:focus
-      outline-style: none
-      outline-color: lighten($bg, 40)
-  button.note-create__activate
-    display: none
-  button.note-create__button
-    position: absolute
-    bottom: 0
-    right: 0
-    font-family: Arial
-    font-size: em(18px)
-    line-height: 1
-    background: none
-    border: none
-    font-weight: bold
-    color: lighten($bg, 80)
 
-.note.create.active
-  @include box-shadow(0, 0, em(8px), lighten($bg, 70))
-
-.note.create.inactive
-  background: none
-  height: 0
-  visibility: hidden
-  //@include animation(showNewNote 0.5s)
-  transition: height 0.5s
-  textarea
-    display: none
-  button.note-create__button
-    display: none
-  button.note-create__activate
-    display: block
-    background: none
-    font-family: Arial
-    font-size: em(28px)
-    margin-left: auto
-    margin-right: auto
-    margin-top: em(7px)
-    border: none
-    color: lighten($bg, 30)
-    outline-style: none
-    @include animation(plusdarker 0.3s)
-    &:hover
-      @include animation(pluslighter 0.3s)
-      color: lighten($bg, 80)
-      
 .card-wrapper
   position: relative
 

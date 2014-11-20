@@ -10,10 +10,10 @@ Template.noteCreate.events
       content: content,
       card_id: this.card_id,
       column: this.column
-    $('.note.create').addClass('inactive').removeClass('active')
+    $('.note.create').removeClass('active')
   'click .note-create__activate': (event, template) ->
-    $('.note.create').addClass('inactive').removeClass('active')
-    $(template.firstNode).removeClass('inactive').addClass('active')
+    $('.note.create').removeClass('active')
+    $(template.firstNode).addClass('active')
     $(template.firstNode).find('textarea').focus()
   'focusout textarea': (event, template) ->
     Meteor.setTimeout(->
