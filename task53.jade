@@ -54,7 +54,7 @@ template( name = 'cardColumn' )
 template( name = 'card' )
   .card( draggable = 'true' )
     +markdown
-      =content
+      #{content}
     button.card__remove &times;
     small created by #{ displayName }
 
@@ -67,7 +67,7 @@ template( name = 'noteColumn')
 template( name = 'note')
   .note( draggable = 'true', style = "background-color: #{color}" )
     +markdown
-      =content
+      #{content}
 
 template( name = 'noteCreate' )
   .note.create.inactive
